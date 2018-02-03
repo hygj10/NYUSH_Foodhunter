@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--add scroll view so that the buttons are visible in landscape mode-->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:background="@drawable/foodhunter">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    >
+    <Button
+        android:id="@+id/nyu_events"
+        android:layout_marginTop="360dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_rounded"
+        android:text="NYU New York Events"
+        android:padding="8dp"
+        android:textColor="@color/very_light_purple"
+        android:layout_gravity="center"
+
+        />
+    <Button
+        android:id="@+id/nyush_events"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NYU Shanghai Events"
+        android:padding="8dp"
+        android:background="@drawable/button_rounded"
+        android:layout_marginTop="12dp"
+        android:textColor="@color/very_light_purple"
+        android:layout_gravity="center"
+
+        />
+
+</LinearLayout>
+</ScrollView>
