@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.ListView;
@@ -36,17 +37,14 @@ public class NyushEventsActivity
                 "https://api.orgsync.com/api/v3/communities/719/events?key=loD27Kbj2xs-EnGPKh6XRHViW" +
                         "QA7Imq_bJqWfYVHWUk&upcoming=true&page=1&per_page=100&after=2017-08-16T00%3A03" +
                         "%3A42.479Z&before=2019-08-16T00%3A03%3A42.479Z&include_opportunities=true";
-        /**
-         * Constant value for the earthquake loader ID. We can choose any integer.
-         * This really only comes into play if you're using multiple loaders.
-         */
+
         private static final int EARTHQUAKE_LOADER_ID = 1;
         int index;
         int top;
         boolean filtercondition;
-        /** Adapter for the list of earthquakes */
+        // Adapter for the list of events
         private EventsAdapter mAdapter;
-        /** TextView that is displayed when the list is empty */
+        // TextView that is displayed when the list is empty
         private TextView mEmptyStateTextView;
         //create adapter for filtered listview
         private FilteredAdapter filteredAdapter;
@@ -76,14 +74,14 @@ public class NyushEventsActivity
 
         onCheckboxClicked(findViewById(R.id.filter));
 
-        //if box is checked used the filter adapter, if not the earthquake adapter.
+        //if box is checked used the filter adapter, if not the event adapter.
         if (filtercondition){
 
 
             mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
             earthquakeListView.setEmptyView(mEmptyStateTextView);
 
-            // Create a new adapter that takes an empty list of earthquakes as input
+            // Create a new adapter that takes an empty list of events as input
 
             filteredAdapter = new FilteredAdapter(this, new ArrayList<Event>());
 
@@ -100,7 +98,7 @@ public class NyushEventsActivity
                     View v = earthquakeListView.getChildAt(0);
                     top = (v == null) ? 0 : (v.getTop() - earthquakeListView.getPaddingTop());
 
-                    // Find the current earthquake that was clicked on
+                    // Find the current event that was clicked on
                     Event currentEvent = filteredAdapter.getItem(position);
 
 
@@ -122,7 +120,7 @@ public class NyushEventsActivity
             mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
             earthquakeListView.setEmptyView(mEmptyStateTextView);
 
-            // Create a new adapter that takes an empty list of earthquakes as input
+            // Create a new adapter that takes an empty list of events as input
             mAdapter = new EventsAdapter(this, new ArrayList<Event>());
 
 
@@ -137,7 +135,7 @@ public class NyushEventsActivity
                     View v = earthquakeListView.getChildAt(0);
                     top = (v == null) ? 0 : (v.getTop() - earthquakeListView.getPaddingTop());
 
-                    // Find the current earthquake that was clicked on
+                    // Find the current eavent that was clicked on
                     Event currentEvent = mAdapter.getItem(position);
 
 
@@ -236,7 +234,7 @@ public class NyushEventsActivity
         // Set empty state text to display "No events found."
         mEmptyStateTextView.setText(R.string.no_events);
 
-        // Clear the adapter of previous earthquake data
+        // Clear the adapter of previous data
         //First check which adapter has been used
         if (filtercondition) {
             filteredAdapter.clear();

@@ -1,18 +1,4 @@
-/*
- * Copyright (C) 2016 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 package com.example.android.foodHunter;
 
 import android.app.LoaderManager;
@@ -44,15 +30,12 @@ public class NyunyEventsActivity extends AppCompatActivity
             "https://api.orgsync.com/api/v3/communities/574/events?key=loD27Kbj2xs-EnGPKh6XRHViWQA7Imq_bJqWfYVHWUk&" +
                     "upcoming=true&page=1&per_page=100&after=2017-08-09T04%3A27%3A17.910Z&before=2019-08-09T04%3A27%3A17." +
                     "910Z&include_opportunities=true";
-    /**
-     * Constant value for the earthquake loader ID. We can choose any integer.
-     * This really only comes into play if you're using multiple loaders.
-     */
+
     private static final int EARTHQUAKE_LOADER_ID = 1;
     int index;
     int top;
     boolean filtercondition;
-    /** Adapter for the list of earthquakes */
+    /** Adapter for the list of events */
     private EventsAdapter mAdapter;
     /** TextView that is displayed when the list is empty */
     private TextView mEmptyStateTextView;
@@ -86,14 +69,14 @@ public class NyunyEventsActivity extends AppCompatActivity
 
         onCheckboxClicked(findViewById(R.id.filter));
 
-        //if box is checked used the filter adapter, if not the earthquake adapter.
+        //if box is checked used the filter adapter, if not the event adapter.
         if (filtercondition){
 
 
             mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
             earthquakeListView.setEmptyView(mEmptyStateTextView);
 
-            // Create a new adapter that takes an empty list of earthquakes as input
+            // Create a new adapter that takes empty list of events as input
 
             filteredAdapter = new FilteredAdapter(this, new ArrayList<Event>());
 
@@ -110,7 +93,7 @@ public class NyunyEventsActivity extends AppCompatActivity
                     View v = earthquakeListView.getChildAt(0);
                     top = (v == null) ? 0 : (v.getTop() - earthquakeListView.getPaddingTop());
 
-                    // Find the current earthquake that was clicked on
+                    // Find the event that was clicked on
                     Event currentEvent = filteredAdapter.getItem(position);
 
 
@@ -132,7 +115,7 @@ public class NyunyEventsActivity extends AppCompatActivity
             mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
             earthquakeListView.setEmptyView(mEmptyStateTextView);
 
-            // Create a new adapter that takes an empty list of earthquakes as input
+            // Create a new adapter
             mAdapter = new EventsAdapter(this, new ArrayList<Event>());
 
 

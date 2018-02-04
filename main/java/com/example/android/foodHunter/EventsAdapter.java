@@ -31,20 +31,10 @@ import java.util.TimeZone;
 import static android.graphics.Color.parseColor;
 
 
-/**
- * An {@link EventsAdapter} knows how to create a list item layout for each earthquake
- * in the data source (a list of {@link Event} objects).
- *
- * These list item layouts will be provided to an adapter view like ListView
- * to be displayed to the user.
- */
 public class EventsAdapter extends ArrayAdapter<Event> {
     NyushEventsActivity location = new NyushEventsActivity();
 
-    /**
-     * The part of the location string from the USGS service that we use to determine
-     * whether or not there is a location offset present ("5km N of Cairo, Egypt").
-     */
+
     private static final String LOCATION_SEPARATOR = " of ";
 
     /**
@@ -57,10 +47,7 @@ public class EventsAdapter extends ArrayAdapter<Event> {
         super(context, 0, events);
     }
 
-    /**
-     * Returns a list item view that displays information about the earthquake at the given position
-     * in the list of earthquakes.
-     */
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Check if there is an existing list item view (called convertView) that we can reuse,
@@ -71,22 +58,17 @@ public class EventsAdapter extends ArrayAdapter<Event> {
                     R.layout.event_list_item, parent, false);
         }
 
-        // Find the earthquake at the given position in the list of earthquakes
+
         Event currentEvent = getItem(position);
 
-        // Find the TextView with view ID magnitude
+        // Find the TextView with corresponding id
         TextView magnitudeView = (TextView) listItemView.findViewById(R.id.magnitude);
-        // Format the magnitude to show 1 decimal place
+
         String formattedMagnitude = currentEvent.getEventTitle();
-        // Display the magnitude of the current earthquake in that TextView
+
         magnitudeView.setText(formattedMagnitude);
 
-        // Set the proper background color on the magnitude circle.
-        // Fetch the background from the TextView, which is a GradientDrawable.
 
-
-        // Get the original location string from the Event object,
-        // which can be in the format of "5km N of Cairo, Egypt" or "Pacific-Antarctic Ridge".
         String[] food = {"meal", "pizza", "refreshment", "cookie", "beverage", "tea ",
                 "tea.", "tea!", "sandwich", "fruit", "food", "lunch", "breakfast", "snack", "dinner"};
         String originalLocation = currentEvent.getDescription();
@@ -113,28 +95,14 @@ public class EventsAdapter extends ArrayAdapter<Event> {
         // Display the location of the current earthquake in that TextView
         primaryLocationView.setText(originalLocation);
 
-        // Find the TextView with view ID location offset
 
-
-        // Create a new Date object from the time in milliseconds of the earthquake
-      //  String date = currentEvent.getmStartTime();
         String myDate = currentEvent.getmStartTime();
         String myDate2 = currentEvent.getmEndTime();
-        //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.US);
-      //  Date  date = sdf.parse(myDate);
 
-       // long millis = date.getTime();
-       // Date dateObject = new Date(currentEvent.getmStartTime());
 
         // Find the TextView with view ID date
         TextView dateView = (TextView) listItemView.findViewById(R.id.date);
-        // Format the date string (i.e. "Mar 3, 1984")
-        //String formattedDate = formatDate(date);
-        // Display the date of the current earthquake in that TextView
-        //dateView.setText(formattedDate);
 
-        // Find the TextView with view ID date
-       // TextView dateView = (TextView) listItemView.findViewById(R.id.date);
         try {
             Date dateObj = formatter(myDate);
             Date dateObj2 = formatter(myDate2);
